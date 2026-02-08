@@ -11,7 +11,7 @@
         @isset($title)
             {{ $title }} - Laravel 12
         @else
-            Laravel
+            Laravel 12
         @endisset
     </title>
 </head>
