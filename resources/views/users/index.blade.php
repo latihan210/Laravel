@@ -9,8 +9,8 @@
                 email and role.</x-slot>
         </x-section-title>
         <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-            <x-button as="a" href="/user/create">
-                Add user
+            <x-button as="a" href="/users/create">
+                Add
             </x-button>
         </div>
     </div>
