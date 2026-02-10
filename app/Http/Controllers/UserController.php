@@ -23,8 +23,21 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        User::create($request->only('name', 'email', 'password'));
+        User::create($request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8',
+        ]));
 
         return redirect('/users');
+    }
+
+    public function show(User $user)
+    {
+        // $user = User::findOrFail($id);
+
+        return view('users.show', [
+            'user' => $user
+        ]);
     }
 }

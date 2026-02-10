@@ -33,7 +33,7 @@
             @enderror
         </div>
 
-        <x-button>Save</x-button>
+        <x-button>Create</x-button>
 
     </form>
 
