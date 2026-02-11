@@ -18,13 +18,23 @@ use App\Http\Controllers;
 Route::get('/', Controllers\HomeController::class); // Jika ingin singkat Khusus untuk invoke
 // Route::get('/', [Controllers\HomeController::class, '__invoke']); // Kalau ingin rinci dan jelas pakai ini
 
-Route::get('/about', [Controllers\AboutController::class, 'index']);
+Route::get('/about', [Controllers\AboutController::class, 'index'])->name('about');
 
-Route::get('/contact', [Controllers\ContactController::class, 'index']);
+Route::get('/contact', [Controllers\ContactController::class, 'index'])->name('contact');
+
+// Login Routes
+
+Route::get('/login', [Controllers\LoginController::class, 'loginForm'])->name('login')->middleware('guest');
+
+Route::post('/login', [Controllers\LoginController::class, 'authenticate'])->middleware('guest');
+
+// Logout Route
+
+Route::post('/logout', [Controllers\LogoutController::class, '__invoke'])->name('logout')->middleware('auth');
 
 // User Routes
 
-Route::resource('users', Controllers\UserController::class);
+Route::resource('users', Controllers\UserController::class)->middleware('auth');
 
 // Route::get('/users', [Controllers\UserController::class, 'index'])->name('users.index');
 

@@ -8,10 +8,24 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
+                        @auth
                         <x-navbar.link href="/">Home</x-navbar.link>
-                        <x-navbar.link href="/about">About</x-navbar.link>
-                        <x-navbar.link href="/contact">Contact</x-navbar.link>
-                        <x-navbar.link href="/users">Users</x-navbar.link>
+                        <x-navbar.link href="{{ route('about') }}">About</x-navbar.link>
+                        <x-navbar.link href="{{ route('contact') }}">Contact</x-navbar.link>
+                        <x-navbar.link href="{{ route('users.index') }}">Users</x-navbar.link>
+                        @endauth
+
+                        @auth
+                        <x-navbar.link href="#">
+                            {{ Auth::user()->name }}
+                        </x-navbar.link>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <x-button type="submit" variant="danger">Logout</x-button>
+                        </form>
+                        @else
+                        <x-navbar.link href="{{ route('login') }}">Login</x-navbar.link>
+                        @endauth
                     </div>
                 </div>
             </div>
@@ -39,9 +53,9 @@
         <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
 
             <x-navbar.dropdown-item href="/">Home</x-navbar.dropdown-item>
-            <x-navbar.dropdown-item href="/about">About</x-navbar.dropdown-item>
-            <x-navbar.dropdown-item href="/contact">Contact</x-navbar.dropdown-item>
-            <x-navbar.dropdown-item href="/userss">Users</x-navbar.dropdown-item>
+            <x-navbar.dropdown-item href="{{ route('about') }}">About</x-navbar.dropdown-item>
+            <x-navbar.dropdown-item href="{{ route('contact') }}">Contact</x-navbar.dropdown-item>
+            <x-navbar.dropdown-item href="{{ route('users.index') }}">Users</x-navbar.dropdown-item>
 
             {{-- @include('components.nav-link') --}}
         </div>
