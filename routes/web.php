@@ -24,16 +24,18 @@ Route::get('/contact', [Controllers\ContactController::class, 'index']);
 
 // User Routes
 
-Route::get('/users', [Controllers\UserController::class, 'index']);
+Route::resource('users', Controllers\UserController::class);
 
-Route::get('/users/create', [Controllers\UserController::class, 'create']);
+// Route::get('/users', [Controllers\UserController::class, 'index'])->name('users.index');
 
-Route::post('/users', [Controllers\UserController::class, 'store']);
+// Route::get('/users/create', [Controllers\UserController::class, 'create'])->name('users.create');
 
-Route::get('/users/{user:id}', [Controllers\UserController::class, 'show']);
+// Route::post('/users', [Controllers\UserController::class, 'store'])->name('users.store');
 
-Route::get('/users/{user}/edit', [Controllers\UserController::class, 'edit']);
+// Route::get('/users/{user:id}', [Controllers\UserController::class, 'show'])->name('users.show');
 
-Route::put('/users/{user}', [Controllers\UserController::class, 'update']);
+// Route::get('/users/{user}/edit', [Controllers\UserController::class, 'edit'])->name('users.edit');
 
-Route::delete('/users/{user}', [Controllers\UserController::class, 'destroy']);
+// Route::put('/users/{user}', [Controllers\UserController::class, 'update'])->name('users.update');
+
+// Route::delete('/users/{user}', [Controllers\UserController::class, 'destroy'])->name('users.destroy');
