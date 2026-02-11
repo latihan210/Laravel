@@ -33,13 +33,22 @@
                     <x-table.td>{{ $user->email }}</x-table.td>
                     <x-table.td>{{ (new \Carbon\Carbon($user->published_at))->format('d F Y') }}</x-table.td>
                     <x-table.td>
-                        <a href="/users/{{ $user->id }}">
-                            View
-                        </a>
+                        <div class="flex justify-center gap-x-2">
+                            <x-button as="a" href="/users/{{ $user->id }}" variant="secondary">
+                                View
+                            </x-button>
+                            <x-button as="a" href="/users/{{ $user->id }}/edit" variant="warning">
+                                Edit
+                            </x-button>
+                            <form method="POST" action="/users/{{ $user->id }}">
+                                @csrf
+                                @method('DELETE')
+                                <x-button type="submit" variant="danger">Delete</x-button>
+                            </form>
+                        </div>
                     </x-table.td>
                 </tr>
                 @endforeach
-                <!-- More people... -->
             </x-table.tbody>
         </x-table>
     </div>

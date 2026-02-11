@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use \App\Models\User;
 
 class UserController extends Controller
@@ -18,26 +18,55 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('users.create');
+        return view('users.form', [
+            'user' => new User(),
+            'page_meta' => [
+                'title' => 'Create User',
+                'method' => 'POST',
+                'action' => '/users',
+                'submit' => 'Create'
+            ],
+        ]);
     }
 
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        User::create($request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8',
-        ]));
+        User::create($request->validated());
 
         return redirect('/users');
     }
 
     public function show(User $user)
     {
-        // $user = User::findOrFail($id);
-
         return view('users.show', [
             'user' => $user
         ]);
+    }
+
+    public function edit(User $user)
+    {
+        return view('users.form', [
+            'user' => $user,
+            'page_meta' => [
+                'method' => 'PUT',
+                'action' => '/users/' . $user->id,
+                'title' => 'Edit User',
+                'submit' => 'Update'
+            ],
+        ]);
+    }
+
+    public function update(UserRequest $request, User $user)
+    {
+        $user->update($request->validated());
+
+        return redirect('/users/' . $user->id);
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+        return redirect('/users');
     }
 }
