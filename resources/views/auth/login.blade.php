@@ -24,9 +24,9 @@
 
         <div class="flex items-center gap-x-4">
             <x-button>Login</x-button>
-            <x-button as="a" href="/users" variant="secondary">
+            <!-- <x-button as="a" href="/users" variant="secondary">
                 Back
-            </x-button>
+            </x-button> -->
         </div>
     </form>
 </x-layout>

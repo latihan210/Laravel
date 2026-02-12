@@ -16,7 +16,7 @@
                         @endauth
 
                         @auth
-                        <x-navbar.link href="#">
+                        <x-navbar.link href="{{ route('users.show', Auth::user()->id) }}">
                             {{ Auth::user()->name }}
                         </x-navbar.link>
                         <form action="{{ route('logout') }}" method="POST">
@@ -56,8 +56,6 @@
             <x-navbar.dropdown-item href="{{ route('about') }}">About</x-navbar.dropdown-item>
             <x-navbar.dropdown-item href="{{ route('contact') }}">Contact</x-navbar.dropdown-item>
             <x-navbar.dropdown-item href="{{ route('users.index') }}">Users</x-navbar.dropdown-item>
-
-            {{-- @include('components.nav-link') --}}
         </div>
         <div class="border-t border-white/10 pt-4 pb-3">
             <div class="flex items-center px-5">

@@ -15,7 +15,7 @@ use App\Http\Controllers;
 |
 */
 
-Route::get('/', Controllers\HomeController::class); // Jika ingin singkat Khusus untuk invoke
+Route::get('/', Controllers\HomeController::class)->middleware('auth'); // Jika ingin singkat Khusus untuk invoke
 // Route::get('/', [Controllers\HomeController::class, '__invoke']); // Kalau ingin rinci dan jelas pakai ini
 
 Route::get('/about', [Controllers\AboutController::class, 'index'])->name('about');
